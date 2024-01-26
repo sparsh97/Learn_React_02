@@ -10,7 +10,7 @@ function BookShow({ book, deleteBookbyId, updateBookTitle }) {
     SetActive(prev => !prev);
   }
   return (
-    <div className="bg-gray-500 rounded-lg w-full text-white m-2 p-2 flex flex-col justify-between text-center">
+    <div className="border border-blue-400 rounded-lg w-full text-white m-2 p-2 flex flex-col justify-between text-center">
       <p className="p-2 m-2">
         <BookEdit title={book} updateBookTitle={updateBookTitle} active={active} />
       </p>
