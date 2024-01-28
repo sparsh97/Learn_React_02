@@ -22,17 +22,22 @@ function App() {
     setBooks([...books, response?.data]);
   };
 
-  const deleteBookbyId = (id) => {
+  const deleteBookbyId = async(id) => {
+    await axios.delete(`http://127.0.0.1:3001/books/${id}`);
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
     });
     setBooks(updatedBooks);
   };
 
-  const updateBookTitle = (id, title) => {
+  const updateBookTitle = async(id, title) => {
+    const response = await axios.put(`http://127.0.0.1:3001/books/${id}`, {
+      title
+    });
+
     const updateBooks = books.map((book) => {
       if (book.id == id) {
-        return { ...book, title };
+        return { ...book, ...response.data };
       }
       return book;
     });
