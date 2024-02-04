@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-
-function BookEdit({title,updateBookTitle,active}) {
+import  { useContext, useState } from 'react'
+import BooksContext from '../context/books';
+import PropTypes from "prop-types";
+function BookEdit({title, active}) {
+  const {books, updateBookTitle} = useContext(BooksContext);
   const [titles, setTitles] = useState(title?.title);
   const titleChange = (e) => {
     setTitles(e.target.value);
@@ -16,5 +18,8 @@ function BookEdit({title,updateBookTitle,active}) {
     </div>
   )
 }
-
+BookEdit.propTypes = {
+  book: PropTypes.object,
+  active: PropTypes.bool.isRequired
+}
 export default BookEdit

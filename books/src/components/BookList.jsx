@@ -1,27 +1,28 @@
-import React from "react";
+import { useContext } from "react";
 import BookShow from "./BookShow";
+import BooksContext from "../context/books";
 
-function BookList({ books, deleteBookbyId, updateBookTitle }) {
+function BookList() {
+  let { books } = useContext(BooksContext);
+  if (books == undefined || books.length  == 0) {
+    books = []
+  }
   const renderBooks = books.map((book) => {
-    return (
-      <BookShow
-        deleteBookbyId={deleteBookbyId}
-        key={book.id}
-        book={book}
-        updateBookTitle={updateBookTitle}
-      />
-    );
+    return <BookShow key={book.id} book={book} />;
   });
   return (
     <>
-    <div>
-      <div className="p-2 m-2">
-        <p className="p-1 m-1">Book List</p>
-        <div className="p-1 m-1 flex justify-around items-center">{renderBooks}</div>;
+      <div>
+        <div className="p-2 m-2">
+          <p className="p-1 m-1">Book List</p>
+          <div className="p-1 m-1 flex justify-around items-center">
+            {renderBooks}
+          </div>
+          ;
+        </div>
       </div>
-    </div>
     </>
-  )
+  );
 }
 
 export default BookList;

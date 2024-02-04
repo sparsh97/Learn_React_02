@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import  { useContext, useState } from "react";
 import BookEdit from "./BookEdit";
+import BooksContext from "../context/books";
+import PropTypes from 'prop-types';
 
-function BookShow({ book, deleteBookbyId, updateBookTitle }) {
+function BookShow({ book }) {
+  const { deleteBookbyId } = useContext(BooksContext);
   const [active, SetActive] = useState(true);
   const onDelete = () => {
-    deleteBookbyId(book.id);
+    deleteBookbyId(book?.id);
   };
   const onEdit = () => {
     SetActive(prev => !prev);
@@ -12,7 +15,7 @@ function BookShow({ book, deleteBookbyId, updateBookTitle }) {
   return (
     <div className="border border-blue-400 rounded-lg w-full text-white m-2 p-2 flex flex-col justify-between text-center">
       <p className="p-2 m-2">
-        <BookEdit title={book} updateBookTitle={updateBookTitle} active={active} />
+        <BookEdit title={book} active={active} />
       </p>
       <div className="m-2">
         <button className="m-1 p-1 bg-red-400 rounded-md" onClick={onDelete}>
@@ -25,5 +28,7 @@ function BookShow({ book, deleteBookbyId, updateBookTitle }) {
     </div>
   );
 }
-
+BookShow.propTypes = {
+  book: PropTypes.object
+}
 export default BookShow;
