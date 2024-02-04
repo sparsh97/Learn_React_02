@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import BookShow from "./BookShow";
-import BooksContext from "../context/books";
+import { useBookContext } from "../context/books";
 
 function BookList() {
-  let { books } = useContext(BooksContext);
+  let { books } = useBookContext();
   if (books == undefined || books.length  == 0) {
     books = []
   }

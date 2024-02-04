@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const BooksContext = createContext();
 
@@ -50,6 +50,9 @@ function BooksProvider({ children }) {
       {children}
     </BooksContext.Provider>
   );
+}
+export function useBookContext() {
+  return useContext(BooksContext);
 }
 export { BooksProvider };
 export default BooksContext;

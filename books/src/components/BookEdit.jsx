@@ -1,8 +1,8 @@
-import  { useContext, useState } from 'react'
-import BooksContext from '../context/books';
+import  { useState } from 'react'
+import { useBookContext } from '../context/books';
 import PropTypes from "prop-types";
 function BookEdit({title, active}) {
-  const {books, updateBookTitle} = useContext(BooksContext);
+  const {books, updateBookTitle} = useBookContext()
   const [titles, setTitles] = useState(title?.title);
   const titleChange = (e) => {
     setTitles(e.target.value);
