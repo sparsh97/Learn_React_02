@@ -13,11 +13,10 @@ function BookList() {
     <>
       <div>
         <div className="p-2 m-2">
-          <p className="p-1 m-1">Book List</p>
+          <h1 className="p-1 m-1 font-extrabold">Book List</h1>
           <div className="p-1 m-1 flex justify-around items-center">
             {renderBooks}
           </div>
-          ;
         </div>
       </div>
     </>

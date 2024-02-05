@@ -9,7 +9,7 @@ function App() {
   const {fetchAllBooks} = useBookContext();
   useEffect(() => {
     fetchAllBooks();
-  }, []);
+  }, [fetchAllBooks]);
 
   
   
