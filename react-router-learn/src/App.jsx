@@ -6,16 +6,16 @@ function App() {
   return (
     <>
       <div className="p-1 m-1">
-        <Button>Click Here</Button>
+        <Button primary secondary>Click Here</Button>
       </div>
       <div className="p-1 m-1">
-        <Button> By now </Button>
+        <Button secondary rounded> By now </Button>
       </div>
       <div className="p-1 m-1">
-        <Button> Download</Button>
+        <Button warn outline> Download</Button>
       </div>
       <div className="p-1 m-1">
-        <Button> OMG </Button>
+        <Button danger rounded outline> OMG </Button>
       </div>
     </>
   );
