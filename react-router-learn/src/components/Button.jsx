@@ -20,6 +20,13 @@ function Button({
       "bg-orange-500 border-orange-500 text-white": warn,
       "bg-red-500 border-red-500 text-white": danger,
       "bg-green-500 border-green-500 text-white": success,
+      "rounded-full": rounded,
+      "bg-white": outline,
+      "text-blue-500": outline && primary,
+      "text-gray-500": outline && secondary,
+      "text-red-500": outline && danger,
+      "text-green-500": outline && warn,
+      "text-ornage-500": outline && success
     })
   );
   return (
