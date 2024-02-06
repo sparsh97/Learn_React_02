@@ -12,6 +12,7 @@ function Button({
   danger,
   rounded,
   outline,
+  ...rest
 }) {
   const finalClassName = twMerge(
     className("px-3", "py-1.5 border", {
@@ -32,7 +33,7 @@ function Button({
   return (
     <>
       <div>
-        <button className={finalClassName}>{children}</button>
+        <button {...rest} className={finalClassName}>{children}</button>
       </div>
     </>
   );
