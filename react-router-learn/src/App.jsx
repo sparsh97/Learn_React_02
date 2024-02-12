@@ -6,11 +6,23 @@ import Accordion from "./components/Accordion";
 function App() {
   const items = [
     {
+      index: 0,
       label: "a",
-      content: "re",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eaque tempore voluptatibus, iste, eligendi vero culpa laudantium eos rerum quis nemo. Quam officia autem molestias expedita ut! Suscipit, obcaecati at.",
     },
-    { label: "ab", content: "rebc" },
-    { label: "abc", content: "rbcbe" },
+    {
+      index: 1,
+      label: "ab",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eaque tempore voluptatibus, iste, eligendi vero culpa laudantium eos rerum quis nemo. Quam officia autem molestias",
+    },
+    {
+      index: 2,
+      label: "abc",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eaque tempore voluptatibus, iste, eligendi vero culpa laudantium eos rerum quis nemo.",
+    },
   ];
   return <Accordion items={items} />;
 }
