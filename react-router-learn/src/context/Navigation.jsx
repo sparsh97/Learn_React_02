@@ -19,7 +19,7 @@ function NaviagationProvider({ children }) {
   }
 
   return (
-    <NavigationContext.Provider value={{navigate}}>
+    <NavigationContext.Provider value={{navigate, currentPath}}>
       <button onClick={()=>navigate("/")}>Home</button>
       {currentPath}
       {children}
