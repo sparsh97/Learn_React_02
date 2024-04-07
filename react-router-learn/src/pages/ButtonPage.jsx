@@ -1,4 +1,4 @@
-import "./App.css";
+
 import Button from "../components/Button";
 
 function ButtonPage() {

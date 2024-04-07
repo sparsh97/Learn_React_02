@@ -1,21 +1,26 @@
 import { useState } from "react";
 import "./App.css";
 import Link from "./components/Link";
-import Routes from "./components/Routes";
+import Route from "./components/Routes";
 import AccordionPage from "./pages/AccordionPage";
 import DropdownPage from "./pages/DropdownPage";
+import ButtonPage from "./pages/ButtonPage";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div>
-      <Link to="/test">Go to Accordion</Link>
-      <div className="p-2 m-2 rounded">
-        <Routes path="/accordion">
-          <AccordionPage></AccordionPage>
-        </Routes>
-        <Routes path="/dropdown">
-          <DropdownPage></DropdownPage>
-        </Routes>
+    <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
+      <Sidebar />
+      <div className="col-span-5">
+        <Route path="/accordion">
+          <AccordionPage />
+        </Route>
+        <Route path="/">
+          <DropdownPage />
+        </Route>
+        <Route path="/buttons">
+          <ButtonPage />
+        </Route>
       </div>
     </div>
   );
