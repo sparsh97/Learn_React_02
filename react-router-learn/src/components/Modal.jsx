@@ -1,18 +1,28 @@
-import React from "react";
-import ReactDOM from 'react-dom'
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 
-function Modal() {
+function Modal({ onClose, children, actionBar }) {
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return ReactDOM.createPortal(
     <div>
-      <div className="absolute inset-0 bg-gray-300 opacity-80"></div>
+      <div
+        onClick={onClose}
+        className="absolute inset-0 bg-gray-300 opacity-80"
+      ></div>
       <div className="absolute inset-40 p-10 bg-white">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. In architecto
-        incidunt sed officiis molestiae amet debitis adipisci, numquam
-        voluptatibus, hic explicabo quisquam aut eveniet, dolore nobis! Dolor
-        adipisci minima corporis.
+        <div className="flex flex-col justify-between h-full">
+          {children}
+          <div className="flex justify-end">{actionBar}</div>
+        </div>
       </div>
     </div>,
-    document.querySelector('.modal-container')
+    document.querySelector(".modal-container")
   );
 }
 
