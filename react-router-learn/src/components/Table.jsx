@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 function Table({ data, config, keyFn }) {
   const tBodyRow = data.map((item) => {
@@ -13,6 +13,9 @@ function Table({ data, config, keyFn }) {
   });
 
   const tHeadRow = config.map(column => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
+    }
     return (
       <th key={column.label}>{column.label}</th>
     )
@@ -22,9 +25,6 @@ function Table({ data, config, keyFn }) {
       <thead>
         <tr className="border-b-2">
           {tHeadRow}
-          {/* <th>Fruits</th>
-          <th>Color</th>
-          <th>Score</th> */}
         </tr>
       </thead>
       <tbody>{tBodyRow}</tbody>
