@@ -1,9 +1,39 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
+function Table({ data, config }) {
+  const tBodyRow = data.map((item) => {
+    const renderCells = config.map(column => {
+      return <td className="p-2" key={column.label}>{column.render(item)}</td>
+    });
+    return (
+      <tr key={item.name} className="border-b">
+        {renderCells}
+      </tr>
+    );
+  });
 
-function Table() {
+  const tHeadRow = config.map(column => {
+    return (
+      <th key={column.label}>{column.label}</th>
+    )
+  })
   return (
-    <div>Table</div>
-  )
+    <table className="table-auto border-spacing-2">
+      <thead>
+        <tr className="border-b-2">
+          {tHeadRow}
+          {/* <th>Fruits</th>
+          <th>Color</th>
+          <th>Score</th> */}
+        </tr>
+      </thead>
+      <tbody>{tBodyRow}</tbody>
+    </table>
+  );
 }
 
-export default Table
+Table.propTypes = {
+  data: PropTypes.array.isRequired,
+  config: PropTypes.array.isRequired
+};
+export default Table;
