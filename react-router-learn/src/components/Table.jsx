@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-function Table({ data, config }) {
+function Table({ data, config, keyFn }) {
   const tBodyRow = data.map((item) => {
     const renderCells = config.map(column => {
       return <td className="p-2" key={column.label}>{column.render(item)}</td>
     });
     return (
-      <tr key={item.name} className="border-b">
+      <tr key={keyFn(item)} className="border-b">
         {renderCells}
       </tr>
     );
@@ -34,6 +34,7 @@ function Table({ data, config }) {
 
 Table.propTypes = {
   data: PropTypes.array.isRequired,
-  config: PropTypes.array.isRequired
+  config: PropTypes.array.isRequired,
+  keyFn: PropTypes.func.isRequired
 };
 export default Table;
