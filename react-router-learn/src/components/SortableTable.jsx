@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "./Table";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-
+import useSort from "../hooks/useSort";
+import PropTypes from 'prop-types'
 function SortableTable(props) {
   const { config, data } = props;
-  const [sortOrder, setSortOrder] = useState(null);
-  const [sortBy, setSortBy] = useState(null);
+  const {handleClick, sortBy, sortOrder, sortedData} = useSort(data, config);
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) return column;
     return {
@@ -23,39 +23,7 @@ function SortableTable(props) {
       ),
     };
   });
-  let sortedData = data;
-  if (sortedData && sortBy) {
-    const { sortValue } = config.find((column) => column.label === sortBy);
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-      const reverseOrder = sortOrder === "asc" ? 1 : -1;
 
-      if (typeof valueA === "string") {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
-
-  const handleClick = (label) => {
-    if (sortBy && label !== sortBy) {
-      setSortOrder('asc');
-      setSortBy(label);
-      return;
-    }
-    if (sortOrder === null) {
-      setSortOrder("asc");
-      setSortBy(label);
-    } else if (sortOrder === "asc") {
-      setSortOrder("desc");
-      setSortBy(label);
-    } else {
-      setSortOrder(null);
-      setSortBy(null);
-    }
-  };
   return (
     <div>
       <Table {...props} data={sortedData} config={updatedConfig} />
@@ -93,5 +61,8 @@ function getIcons(label, sortBy, sortOrder) {
     );
   }
 }
-
+SortableTable.propTypes = {
+  data: PropTypes.any.isRequired,
+  config: PropTypes.any.isRequired
+}
 export default SortableTable;
