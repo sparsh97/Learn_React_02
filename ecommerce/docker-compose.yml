@@ -1,0 +1,12 @@
+services:
+  vite-react-app:
+    build: .
+    container_name: vite-react-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./vite.config.js:/app/vite.config.js
+    environment:
+      - CHOKIDAR_USEPOLLING=true
