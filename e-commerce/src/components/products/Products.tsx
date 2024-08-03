@@ -36,12 +36,13 @@ function Products() {
         },
       })
       .then((response) => {
-        setProducts(response.data);
+        console.log(response);
+        setProducts(response?.data?.content);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  },[]);
   const header = (
     <img
       alt="Card"
