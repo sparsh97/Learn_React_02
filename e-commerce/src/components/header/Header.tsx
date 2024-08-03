@@ -55,12 +55,13 @@ const MenuWrapper = styled.div`
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: coral;
+  background-color: rgba(0, 0, 0, 0.1);
   height: 8rem;
   margin: -8px;
   position: fixed;
   width: 100%;
   top: 0rem;
+  overflow: hidden;
 `;
 
 export default function Header() {
