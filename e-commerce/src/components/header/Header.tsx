@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
 import { Menubar } from "primereact/menubar";
+import { Avatar } from "primereact/avatar";
+import { Badge } from "primereact/badge";
+import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -17,6 +20,12 @@ const HeaderWrapper = styled.div`
       padding: 0.5rem;
       border-radius: 0.5rem;
     }
+  }
+
+  .profile {
+    position: relative;
+    top: 1rem;
+    right: 1rem;
   }
 
   @media screen and (max-width: 960px) {
@@ -36,7 +45,12 @@ const MenuWrapper = styled.div`
     border-radius: 6px;
   }
 
-  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+  .p-menubar
+    .p-menubar-root-list
+    > .p-menuitem
+    > .p-menuitem-content
+    .p-menuitem-link
+    .p-menuitem-text {
     color: black;
     font-size: large;
     font-weight: bold;
@@ -68,11 +82,15 @@ export default function Header() {
   const [value, setValue] = useState("");
   const items = [
     {
-      label: "Home",
+      label: "Mobiles",
       icon: "pi pi-home",
     },
     {
-      label: "Features",
+      label: "Laptops",
+      icon: "pi pi-star",
+    },
+    {
+      label: "Kitchen",
       icon: "pi pi-star",
     },
   ];
@@ -81,7 +99,7 @@ export default function Header() {
     <HeaderContainer>
       <HeaderWrapper>
         <div className="logo">
-          <h4>E-Commerce</h4>
+          <Link to="/">E-Commerce</Link>
         </div>
         <div className="search">
           <InputText
@@ -91,7 +109,9 @@ export default function Header() {
           />
         </div>
         <div className="profile">
-          <h4>User Profile</h4>
+          <Avatar label="U" size="xlarge" className="p-overlay-badge">
+            <Badge value="0" />
+          </Avatar>
         </div>
       </HeaderWrapper>
       <MenuWrapper>

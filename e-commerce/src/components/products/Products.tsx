@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import { Image } from 'primereact/image';
 import styled from "styled-components";
 import axios from "axios";
 import { Product } from "../../models/Products";
@@ -22,13 +23,19 @@ const ProductCard = styled.div`
    width: 20rem;
    margin: 0.5rem;
   }
+
+  .p-card-header img {
+    width: 50%;
+    margin-left: 4rem;
+  }
 `;
 
 function Products() {
   const [products, setProducts] = useState(new Array<Product>());
-  useEffect(() => {
+  const [pages, setPages] = useState('pageNumber=0&pageSize=8');
+  const fetchProducts = useCallback(() => {
     axios
-      .get("/products/getAll", {
+      .get(`/products/getAll?${pages}`, {
         proxy: {
           host: "localhost",
           port: 9000,
@@ -41,12 +48,20 @@ function Products() {
       })
       .catch((error) => {
         console.log(error);
+        setProducts([]);
       });
-  },[]);
-  const header = (
-    <img
+  },[pages]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  const header = (product: Product) => (
+    <Image
       alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      src={product?.productImage?.[0]}
+      preview
+      loading="lazy"
     />
   );
   const footer = (
@@ -65,16 +80,16 @@ function Products() {
       <ProductCard>
         <div className="product-card">
           {products &&
-            products.map((product: Product) => (
+            products?.map((product: Product) => (
               <Card
-                key={product.id}
-                title={product.productName}
-                subTitle="Card subtitle"
+                key={product?.id}
+                title={product?.productName}
+                subTitle={product?.productCategory?.categoryName}
                 footer={footer}
-                header={header}
+                header={() => header(product)}
                 className="md:w-5rem product-item"
               >
-                <p className="m-0">{product.productDescription}</p>
+                <p className="m-0">{product?.productDescription}</p>
               </Card>
             ))}
         </div>
