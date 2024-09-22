@@ -1,4 +1,5 @@
-function Sidebar() {
+function Sidebar(props) {
+  const { handleToggleModel } = props;
   return (
     <div className="sidebar">
       <div className="bgOverlay"></div>
@@ -13,7 +14,7 @@ function Sidebar() {
             nulla? Saepe.
           </p>
         </div>
-        <button>
+        <button onClick={handleToggleModel}>
           <i className="fa-solid fa-arrow-right"></i>
         </button>
       </div>

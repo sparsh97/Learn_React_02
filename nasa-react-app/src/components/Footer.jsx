@@ -1,16 +1,19 @@
 import React from "react";
 
-function Footer() {
-  return <footer>
-   <div className="bgGradient"></div>
+function Footer(props) {
+  const { showModal, handleToggleModel } = props;
+  return (
+    <footer>
+      <div className="bgGradient"></div>
       <div>
-         <h2>The Brutal Martian Landscape</h2>
-         <h1>AOPD PROJECT</h1>
+        <h2>The Brutal Martian Landscape</h2>
+        <h1>AOPD PROJECT</h1>
       </div>
-      <button>
-      <i className="fa-solid fa-circle-info"></i>
+      <button onClick={handleToggleModel}>
+        <i className="fa-solid fa-circle-info"></i>
       </button>
-  </footer>
+    </footer>
+  );
 }
 
 export default Footer;
